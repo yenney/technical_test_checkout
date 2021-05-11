@@ -13,8 +13,7 @@ def solution(boxes):
 
 
 #boxes = [8, 6, 2, 5]
-#boxes = [9, 7, 7, 10, 4, 8]
+boxes = [9, 7, 7, 10, 4, 8]
 
-boxes = [1, 8, 8, 8, 16, 2]
 
 solution(boxes)
