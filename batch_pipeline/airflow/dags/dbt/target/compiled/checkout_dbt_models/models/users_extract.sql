@@ -1,0 +1,1 @@
+select * from stage_data.users_extract

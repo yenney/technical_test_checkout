@@ -1,0 +1,12 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: pgsql-server
+      user: airflow
+      pass: airflow
+      port: 5432
+      dbname: checkout
+      schema: stage_data
+      threads: 4

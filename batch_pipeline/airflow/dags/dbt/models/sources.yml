@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: stage_data
+    schema: stage_data
+    tables:
+      - name: users_extract

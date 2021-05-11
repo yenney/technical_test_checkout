@@ -1,0 +1,80 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'checkout_dbt_models'
+version: '2.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'default'
+
+# These configurations specify where dbt should look for different types of files.
+# The `source-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+source-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+    - "target"
+    - "dbt_modules"
+
+
+# Configuring models
+models:
+  checkout_dbt_models:
+    pageviews:
+      materialized: incremental
+      +schema: raw_data
+      +tags: pageview_materialize
+    users_extract:
+      materialized: table
+    published:
+      materialized: incremental
+      +schema: published_data
+      most_recent_postcode_user_pageviews:
+        unique_key: sk_mrpup
+        +tags: most_recent
+      most_recent_postcode_user_pageviews_by_hour:
+        unique_key: sk_mrpuph
+        +tags: most_recent
+      most_recent_postcode_user_pageviews_by_day:
+        unique_key: sk_mrpupd
+        +tags: most_recent
+      most_recent_postcode_user_pageviews_by_month:
+        unique_key: sk_mrpupm
+        +tags: most_recent
+      most_recent_postcode_user_pageviews_by_year:
+        unique_key: sk_mrpupy
+        +tags: most_recent
+      all_time_postcode_user_pageviews:
+        unique_key: sk_atpup
+        +tags: all_time
+      all_time_postcode_user_pageviews_by_hour:
+        unique_key: sk_atpuph
+        +tags: all_time
+      all_time_postcode_user_pageviews_by_day:
+        unique_key: sk_atpupd
+        +tags: all_time
+      all_time_postcode_user_pageviews_by_month:
+        unique_key: sk_atpupm
+        +tags: all_time
+      all_time_postcode_user_pageviews_by_year:
+        unique_key: sk_atpupy
+        +tags: all_time
+
+
+# Configuring snapshots
+snapshots:
+  checkout_dbt_models:
+      users_snapshot:
+        +target_database: checkout
+        +target_schema: raw_data
+        +unique_key: id
+        +strategy: check
+        +check_cols: ['postcode']
