@@ -1,9 +1,9 @@
-import sys
 
 def solution(boxes):
 	
 	print('Given Boxes: {0}'.format(boxes))
 
+	# calculate duplicate values in list
 	box_set = set(boxes)
 	total_duplicate_boxes = len(boxes) - len(box_set)
 	print(total_duplicate_boxes)
@@ -12,7 +12,7 @@ def solution(boxes):
 
 	for i in range(0,len(boxes)):
 		for k in range(i+1,len(boxes)):
-			print('i: {0} i: {1} {2}-{3}: {4} k-i: {5} Total: {6}'.format(i,k, boxes[i], boxes[k], boxes[k]-boxes[i], ((k-i)+1)-total_duplicate_boxes, abs(boxes[k]-boxes[i])+abs(k-i)))
+			#print('i: {0} i: {1} {2}-{3}: {4} k-i: {5} Total: {6}'.format(i,k, boxes[i], boxes[k], boxes[k]-boxes[i], ((k-i)+1)-total_duplicate_boxes, abs(boxes[k]-boxes[i])+abs(k-i)))
 			if max_box_diff < abs(boxes[k]-boxes[i])+abs(k-i):
 				max_box_diff = abs(boxes[k]-boxes[i])+abs(k-i)
 				longest_distance = ((k-i)+1)-total_duplicate_boxes
