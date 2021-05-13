@@ -6,7 +6,7 @@ def solution(boxes):
 	# calculate duplicate values in list
 	box_set = set(boxes)
 	total_duplicate_boxes = len(boxes) - len(box_set)
-	print(total_duplicate_boxes)
+	#print(total_duplicate_boxes)
 	max_box_diff = 0
 	longest_distance = 0
 
